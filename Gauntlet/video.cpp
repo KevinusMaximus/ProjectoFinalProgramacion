@@ -28,20 +28,6 @@ video* video::getInstance()
 	return pInstance;
 }
 
-void video::renderGraphic(int img, int posX, int posY, int width, int height)
-{
-	SDL_Rect r, rectAux;
-	r.x = posX;
-	r.y = posY;
-	
-	rectAux.h = height;
-	rectAux.w = width;
-	rectAux.x = 0;
-	rectAux.y = 0;
-
-	SDL_Texture* origin = ResourceManager::getInstance()->getGraphicByID(img);
-	SDL_RenderCopy(gRenderer, origin, &rectAux, &r);
-}
 
 void video::renderGraphic(int img, int posX, int posY, int wid, int hei, int width, int height)
 {
