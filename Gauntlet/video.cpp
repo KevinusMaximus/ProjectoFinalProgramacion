@@ -1,7 +1,7 @@
 #include "video.h"
 #include "resourceManager.h"
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1080
+#define SCREEN_WIDTH 600
+#define SCREEN_HEIGHT 400
 
 video* video::pInstance = NULL;
 
