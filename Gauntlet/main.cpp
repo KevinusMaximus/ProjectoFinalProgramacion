@@ -1,42 +1,73 @@
+#include <SDL_image.h>
 #include <iostream>
-#include "resourceManager.h"
-#include "video.h"
+#include "keyManager.h"
+#include "soundManager.h"
+#include <string>
+#include"video.h"
+#include <SDL_mixer.h>
+
+using namespace std;
+
+//Pantalla
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
+
+//Variables globales
+SDL_Surface* gScreenSurface = NULL;
+
 
 int main(int argc, char* args[])
 {
+	int eleccion = 1;
+	SDL_Init(SDL_INIT_EVERYTHING);
+	//Crear la pantalla
 	video::getInstance();
 
-	Sint32 elPepe = ResourceManager::getInstance()->loadAndGetGraphicID("halalgoku.jpg");
-	Sint32 fondito = ResourceManager::getInstance()->loadAndGetGraphicID("losuponia.jpg");
-	ResourceManager::getInstance()->removeGraphic("halalgoku.jpg");
+	//Inicializar variables de clase
+	KeyManager* Teclas = KeyManager::getInstance();
+	SoundManager* Sonido = SoundManager::getInstance();
+	
+	Sonido->init();
+	Sonido->loadSound("../sounds/firewarrior.ogg", "sound1");
+	Sonido->loadSound("../sounds/firevalkyrie.ogg", "sound2");
+	Sonido->loadSound("../sounds/firewizard.ogg", "sound3");
 
-	elPepe = ResourceManager::getInstance()->loadAndGetGraphicID("mondongo.jpg");
 
-	bool fin = false;
-	while (!fin)
-	{
-		SDL_Event MyEvent;
-		while (SDL_PollEvent(&MyEvent))
+	while (true) {
+
+		Teclas->update();
+		switch (eleccion)
 		{
-			switch (MyEvent.type)
+		case 1: 
+			if (Teclas->isKeyDown(ARRIBA))
 			{
-			case SDL_QUIT:
-				fin = true;
-				break;
-			case SDL_KEYDOWN:
-				if (MyEvent.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
-				{
-					fin = true;
-				}
-				break;
-			default:
-				break;
+				cout << "Arriba" << endl;
 			}
+			if (Teclas->isKeyDown(ABAJO))
+			{
+				cout << "Abajo" << endl;
+			}
+			if (Teclas->isKeyDown(IZQUIERDA))
+			{
+				Sonido->playSound("sound3", 0);
+				cout << "Izquierda" << endl;
+			}
+			if (Teclas->isKeyDown(DERECHA))
+			{
+				Sonido->playSound("sound2", 0);
+				cout << "Derecha" << endl;
+			}
+			if (Teclas->isKeyDown(ESPACIO))
+			{
+				Sonido->playSound("sound1", 0);
+				cout << "Ataque" << endl;
+			}
+			break;
+
 		}
 
-		video::getInstance()->renderGraphic(fondito, 0, 0, ResourceManager::getInstance()->getGraphicWidth(fondito), ResourceManager::getInstance()->getGraphicWidth(fondito), ResourceManager::getInstance()->getGraphicWidth(fondito), ResourceManager::getInstance()->getGraphicHeight(fondito));
-		video::getInstance()->renderGraphic(elPepe, 360, 0, ResourceManager::getInstance()->getGraphicWidth(elPepe), ResourceManager::getInstance()->getGraphicWidth(elPepe), ResourceManager::getInstance()->getGraphicWidth(elPepe), ResourceManager::getInstance()->getGraphicHeight(elPepe));
 
+		//Hacer update de la surface 
 		video::getInstance()->updateScreen();
 		video::getInstance()->waitTime(100);
 	}
