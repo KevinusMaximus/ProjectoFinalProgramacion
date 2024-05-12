@@ -1,7 +1,6 @@
 #include "video.h"
 #include "resourceManager.h"
-#define SCREEN_WIDTH 600
-#define SCREEN_HEIGHT 400
+
 
 video* video::pInstance = NULL;
 
@@ -26,6 +25,26 @@ video* video::getInstance()
 		pInstance = new video();
 	}
 	return pInstance;
+}
+
+void video::renderGraphic(int img, int posX, int posY, int width, int height)
+{
+	SDL_Rect r, rectAux;
+	r.x = posX;
+	r.y = posY;
+	r.w = width;
+	r.h = height;
+
+	rectAux.h = height;
+	rectAux.w = width;
+	rectAux.x = 0;
+	rectAux.y = 0;
+
+	SDL_Texture* origin = ResourceManager::getInstance()->getGraphicByID(img);
+	//SDL_CreateRenderer* origin = ResourceManager::getInstance()->getGraphicByID(img);
+	//SDL_Surface* origin = ResourceManager::getInstance()->getGraphicByID(img);
+	SDL_RenderCopy(gRenderer, origin, &rectAux, &r);
+	//SDL_BlitSurface(origin, &rectAux, gScreenSurface, &r);
 }
 
 

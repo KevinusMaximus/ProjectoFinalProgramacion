@@ -1,12 +1,16 @@
 #pragma once
 #ifndef KEYMANAGER_H
 #define KEYMANAGER_H
-
+enum Teclas
+{
+#define ENTER  SDL_SCANCODE_ESCAPE
 #define ESPACIO  SDL_SCANCODE_SPACE
 #define ARRIBA  SDL_SCANCODE_UP
 #define ABAJO  SDL_SCANCODE_DOWN
 #define IZQUIERDA  SDL_SCANCODE_LEFT
 #define DERECHA  SDL_SCANCODE_RIGHT
+};
+
 
 #include <SDL.h>
 #include <unordered_map>

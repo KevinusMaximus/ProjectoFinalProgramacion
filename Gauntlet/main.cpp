@@ -2,75 +2,46 @@
 #include <iostream>
 #include "keyManager.h"
 #include "soundManager.h"
+#include"resourceManager.h"
 #include <string>
 #include"video.h"
 #include <SDL_mixer.h>
+#include "SceneDirector.h"
 
-using namespace std;
+//#include "Timer.h" Mirar de hacer una clase
 
-//Pantalla
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+Uint32 		global_elapsed_time = 0;
+bool		gameOn = true;
+SceneDirector* sDirector = NULL;
+SoundManager* sonido = NULL;
+KeyManager* teclas = NULL;
+ResourceManager* inicio = NULL;
 
-//Variables globales
-SDL_Surface* gScreenSurface = NULL;
 
-
-int main(int argc, char* args[])
-{
-	int eleccion = 1;
-	SDL_Init(SDL_INIT_EVERYTHING);
-	//Crear la pantalla
+int main(int argc, char* argv[]) {
+	//Init Singletons
 	video::getInstance();
+	sDirector = SceneDirector::getInstance();
+	sonido = SoundManager::getInstance();
+	teclas = KeyManager::getInstance();
+	inicio = ResourceManager::getInstance();
 
-	//Inicializar variables de clase
-	KeyManager* Teclas = KeyManager::getInstance();
-	SoundManager* Sonido = SoundManager::getInstance();
-	
-	Sonido->init();
-	Sonido->loadSound("../sounds/firewarrior.ogg", "sound1");
-	Sonido->loadSound("../sounds/firevalkyrie.ogg", "sound2");
-	Sonido->loadSound("../sounds/firewizard.ogg", "sound3");
-
-
-	while (true) {
-
-		Teclas->update();
-		switch (eleccion)
-		{
-		case 1: 
-			if (Teclas->isKeyDown(ARRIBA))
-			{
-				cout << "Arriba" << endl;
-			}
-			if (Teclas->isKeyDown(ABAJO))
-			{
-				cout << "Abajo" << endl;
-			}
-			if (Teclas->isKeyDown(IZQUIERDA))
-			{
-				Sonido->playSound("sound3", 0);
-				cout << "Izquierda" << endl;
-			}
-			if (Teclas->isKeyDown(DERECHA))
-			{
-				Sonido->playSound("sound2", 0);
-				cout << "Derecha" << endl;
-			}
-			if (Teclas->isKeyDown(ESPACIO))
-			{
-				Sonido->playSound("sound1", 0);
-				cout << "Ataque" << endl;
-			}
-			break;
-
+	while (gameOn) {
+		//ReInit o no
+		if (sDirector->getCurrentScene()->mustReInit()) {
+			sDirector->getCurrentScene()->init();
 		}
-
-
-		//Hacer update de la surface 
+		teclas->update();
+		if (teclas->isKeyDown(ENTER)) {
+			gameOn = false;
+		}
+		// Updates scene
+		sDirector->getCurrentScene()->update();
+		
+		sDirector->getCurrentScene()->render();
 		video::getInstance()->updateScreen();
-		video::getInstance()->waitTime(100);
+		
+
 	}
-	video::getInstance()->close();
 	return 0;
 }

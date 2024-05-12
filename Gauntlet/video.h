@@ -1,5 +1,7 @@
 #pragma once
 #include "sdl.h"
+#define SCREEN_WIDTH 1220
+#define SCREEN_HEIGHT 1080
 class video
 {
 	public:

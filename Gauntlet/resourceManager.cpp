@@ -30,7 +30,7 @@ Sint32 ResourceManager::loadAndGetGraphicID(const char* file)
 {
 	std::map<std::string, Sint32>::iterator it;
 	it = mIDMap.find(file);
-	
+
 	Sint32  returnValue = -1;
 	if (it == mIDMap.end())
 	{
@@ -44,17 +44,19 @@ Sint32 ResourceManager::loadAndGetGraphicID(const char* file)
 	}
 	else
 	{
+		std::cout << "Imagen " << file << " ya cargada previamente, obteniendo ID existente" << std::endl;
 		returnValue = it->second;
 	}
 	return returnValue;
 }
+
 
 void ResourceManager::getGraphicSize(Sint32 img, int& width, int& height)
 {
 	SDL_Texture* imgSurface = getGraphicByID(img);
 	if (imgSurface != NULL)
 	{
-		SDL_QueryTexture(imgSurface, NULL, NULL ,&width ,&height);
+		SDL_QueryTexture(imgSurface, NULL, NULL, &width, &height);
 	}
 	else
 	{
@@ -108,12 +110,12 @@ SDL_Texture* ResourceManager::getGraphicByID(Sint32 ID)
 	else
 	{
 		return NULL;
-	}	
+	}
 }
 
 std::string ResourceManager::getGraphicPathByID(Sint32 ID)
 {
-	
+
 	return std::string();
 }
 
@@ -128,7 +130,7 @@ void ResourceManager::printLoadedGraphics()
 }
 
 Sint32 ResourceManager::createGraphic(const char* name, Uint16 width, Uint16 height)
-{ 
+{
 	return 0;
 }
 
