@@ -1,14 +1,22 @@
 #pragma once
 #ifndef KEYMANAGER_H
 #define KEYMANAGER_H
-enum Teclas
-{
-#define ENTER  SDL_SCANCODE_ESCAPE
+
+#define ESCAPE  SDL_SCANCODE_ESCAPE
 #define ESPACIO  SDL_SCANCODE_SPACE
 #define ARRIBA  SDL_SCANCODE_UP
 #define ABAJO  SDL_SCANCODE_DOWN
 #define IZQUIERDA  SDL_SCANCODE_LEFT
 #define DERECHA  SDL_SCANCODE_RIGHT
+#define ENTER  SDL_SCANCODE_RETURN
+
+#define UNO SDL_SCANCODE_1 
+#define DOS SDL_SCANCODE_2
+#define TRES SDL_SCANCODE_3
+#define CUATRO SDL_SCANCODE_4 
+enum Teclas
+{
+    Uno,Dos,Tres,Cuatro
 };
 
 

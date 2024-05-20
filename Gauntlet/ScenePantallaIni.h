@@ -8,6 +8,7 @@
 #include"CargarMapas.h"
 #include"Character.h"
 #include"Tileset.h"
+#include "Global.h"
 
 class ScenePantallaIni : public Scene
 {

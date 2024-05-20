@@ -13,6 +13,7 @@ class Tileset
 
 	std::string _filename;
 
+
 public:
 	Tileset();
 	~Tileset();

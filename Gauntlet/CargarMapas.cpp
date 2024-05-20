@@ -1,7 +1,6 @@
 #include "CargarMapas.h"
 
 
-Character Jugador;
 Tileset casilla;
 video* renderer;
 CargarMapas::CargarMapas()
@@ -98,14 +97,14 @@ void CargarMapas::render()
 	int tileSP = 1;
 
 	int init_X_Tile = _CamaraX / _tileWidth;
-	int last_X_Tile = (2 + SCREEN_WIDTH / _tileWidth) + init_X_Tile;
+	int last_X_Tile = (1 + SCREEN_WIDTH / _tileWidth) + init_X_Tile;
 	if (last_X_Tile > _width)
 	{
 		last_X_Tile = _width;
 	}
 
 	int init_Y_Tile = _CamaraY / _tileHeight;
-	int last_Y_Tile = (2 + SCREEN_WIDTH / _tileHeight) + init_Y_Tile;
+	int last_Y_Tile = (1 + SCREEN_WIDTH / _tileHeight) + init_Y_Tile;
 	if (last_Y_Tile > _height)
 	{
 		last_X_Tile = _width;
@@ -137,3 +136,6 @@ void CargarMapas::render()
 		}
 	}
 }
+
+
+

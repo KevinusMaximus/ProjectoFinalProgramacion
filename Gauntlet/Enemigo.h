@@ -1,35 +1,34 @@
 #pragma once
-
-#include "Character.h"
 #include "resourceManager.h"
+#include <vector>
+#include <iostream>
+#include <SDL.h>
+#include<cstdlib>
+#include"video.h"
+#include"Character.h"
 #include "ResourceManager.h"
+
 class Enemigo
 {
 private:
-    int enemigo;
+    struct EnemyInstance {
+        int PosX;
+        int PosY;
+        int enemigo;
+        bool active;
+    };
 
-    int vida;
-
-    float PosX;
-    float PosY;
-
-    float vEnemy;
+    std::vector<EnemyInstance> enemigos;
 
 public:
     Enemigo();
     ~Enemigo();
 
-    void init();
-    void update(float characterPosX, float characterPosY); // Se pasan las posiciones del personaje
+    void init(int numEnemies);
+    void update(Character& character);
     void render();
-
-    float calculateDistance(float x1, float y1, float x2, float y2); // Calcular la distancia entre dos puntos
-    void moveTowards(float targetX, float targetY); // Mover al enemigo hacia un punto
-
-    float GetPosX() const { return PosX; } // Obtener la posición X del enemigo
-    float GetPosY() const { return PosY; } // Obtener la posición Y del enemigo
-
-    int GetHealth() const { return vida; } // Obtener la vida del enemigo
+    int GetPosX(int index) const;
+    int GetPosY(int index) const;
 };
 
 

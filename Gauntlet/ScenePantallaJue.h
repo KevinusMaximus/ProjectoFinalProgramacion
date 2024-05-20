@@ -4,13 +4,14 @@
 #include "CargarMapas.h"
 #include "Character.h"
 #include"Enemigo.h"
+#include "Global.h"
 
 
 class ScenePantallaJue : public Scene {
     CargarMapas MyMap;
     Character Player;
     Enemigo Enemigo;
-
+    Bullet* bala;
   
 
 public:

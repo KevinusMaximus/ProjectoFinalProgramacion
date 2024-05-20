@@ -4,7 +4,7 @@
 #include <string>
 #include "tinyxml2.h"
 #include "video.h"
-#include"Character.h"
+
 #include"Tileset.h"
 
 #define NUM_CAPAS 2
@@ -18,7 +18,7 @@ class CargarMapas
 	std::vector <int> Layers[NUM_CAPAS];
 
 	Tileset _tiles;
-	Character* player;
+
 
 	int _CamaraX;
 	int _CamaraY;
@@ -31,7 +31,7 @@ public:
 	int loadMap(const char* filename); // Retorna cero si tot ha anat bé
 
 	void render();
-
+	bool isTileSolid(int x, int y);
 	int getWidth() { return _width; };
 	int getTileWidth() { return _tileWidth; };
 	int getHeight() { return _height; };
@@ -39,4 +39,3 @@ public:
 
 	void setCameraPosition(int x, int y);
 };
-

@@ -18,21 +18,37 @@ void ScenePantallaIni::init()
 
 void ScenePantallaIni::update()
 {
-	
-	if (KeyManager::getInstance()->isKeyDown(ABAJO))
+	KeyManager* Tecla = KeyManager::getInstance();
+	Global* Selector = Global::getInstance();
+	if (Tecla->isKeyDown(UNO))
 	{
+		Selector->setSeleccion(1);
 		ResourceManager::getInstance()->removeGraphic("../images/gauntlet.png");
 		SceneDirector::getInstance()->changeScene(PANTALLA_JUE);
-		
 	}
-	
-	
-	
+	else if (Tecla->isKeyDown(DOS))
+	{
+		Selector->setSeleccion(2);
+		ResourceManager::getInstance()->removeGraphic("../images/gauntlet.png");
+		SceneDirector::getInstance()->changeScene(PANTALLA_JUE);
+	}
+	else if (Tecla->isKeyDown(TRES))
+	{
+		Selector->setSeleccion(3);
+		ResourceManager::getInstance()->removeGraphic("../images/gauntlet.png");
+		SceneDirector::getInstance()->changeScene(PANTALLA_JUE);
+	}
+	else if (Tecla->isKeyDown(CUATRO))
+	{
+		Selector->setSeleccion(4);
+		ResourceManager::getInstance()->removeGraphic("../images/gauntlet.png");
+		SceneDirector::getInstance()->changeScene(PANTALLA_JUE);
+	}
 	
 }
 
 void ScenePantallaIni::render()
 {
-	video::getInstance()->renderGraphic(CargaImagen, 0, 0, 600, 400);//Pinto el fondo con los graficos(imagenes)
+	video::getInstance()->renderGraphic(CargaImagen, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);//Pinto el fondo con los graficos(imagenes)
 
 }

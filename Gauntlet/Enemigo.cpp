@@ -1,64 +1,77 @@
 #include "Enemigo.h"
+#include "video.h"
+#include <cstdlib>
+#include <ctime>
 
+Enemigo::Enemigo() {}
 
-Enemigo::Enemigo()
+Enemigo::~Enemigo() {}
+
+void Enemigo::init(int numEnemies)
 {
-    
-    enemigo = ResourceManager::getInstance()->loadAndGetGraphicID("../images/Enemigo1.png");
+    srand(time(NULL));
 
-    vida = 5;
+    for (int i = 0; i < numEnemies; ++i) {
+        EnemyInstance newEnemy;
+        newEnemy.PosX = rand() % 500;
+        newEnemy.PosY = rand() % 500;
+        newEnemy.active = true;
+        newEnemy.enemigo = ResourceManager::getInstance()->loadAndGetGraphicID("../images/Enemigo1.png");
 
-    PosX = 1000;
-    PosY = 100;
-
-    vEnemy = 1.0f;
-}
-
-Enemigo::~Enemigo()
-{
-}
-
-void Enemigo::init()
-{
-}
-
-void Enemigo::update(float characterPosX, float characterPosY)
-{
-    // Calcula la distancia entre el enemigo y el personaje
-    float distance = calculateDistance(PosX, PosY, characterPosX, characterPosY);
-
-    // Define el umbral de distancia para comenzar a perseguir al personaje
-    float chaseDistance = 600.0f;
-
-    // Si la distancia es menor que el umbral, mueve al enemigo hacia el personaje
-    if (distance < chaseDistance) {
-        moveTowards(characterPosX, characterPosY);
+        enemigos.push_back(newEnemy);
     }
 }
 
-void Enemigo::render()
-{
-    // Render Enemy
-    video::getInstance()->renderGraphic(enemigo, PosX, PosY, 32, 32);
+void Enemigo::update(Character& character) {
+    for (auto& enemy : enemigos) {
+        // Perseguir al personaje
+        if (enemy.PosX < character.getPosX()) {
+            enemy.PosX++;
+        }
+        else if (enemy.PosX > character.getPosX()) {
+            enemy.PosX--;
+        }
+
+        if (enemy.PosY < character.getPosY()) {
+            enemy.PosY++;
+        }
+        else if (enemy.PosY > character.getPosY()) {
+            enemy.PosY--;
+        }
+
+        // Comprobar si ha sido golpeado por una bala del personaje
+        const std::vector<Bullet>& characterBullets = character.getActiveBullets();
+        for (const auto& bullet : characterBullets) {
+            if (bullet.active &&
+                bullet.PosX >= enemy.PosX && bullet.PosX <= enemy.PosX + 32 &&
+                bullet.PosY >= enemy.PosY && bullet.PosY <= enemy.PosY + 32) {
+                enemy.active = false;
+                break;
+            }
+        }
+    }
 }
 
-float Enemigo::calculateDistance(float x1, float y1, float x2, float y2)
-{
-    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+void Enemigo::render() {
+    for (const auto& enemy : enemigos) {
+        // Renderizar enemigo si está activo
+        if (enemy.active) {
+            // Renderizar el enemigo en la posición actual
+            video::getInstance()->renderGraphic(enemy.enemigo, enemy.PosX, enemy.PosY, 32, 32);
+        }
+    }
 }
 
-void Enemigo::moveTowards(float targetX, float targetY)
-{
-    // Calcula la dirección hacia la que debe moverse
-    float deltaX = targetX - PosX;
-    float deltaY = targetY - PosY;
-    float distance = sqrt(pow(deltaX, 2) + pow(deltaY, 2));
+int Enemigo::GetPosX(int index) const {
+    if (index >= 0 && index < enemigos.size())
+        return enemigos[index].PosX;
+    else
+        return -1; // Manejo de error
+}
 
-    // Normaliza el vector de dirección
-    float dirX = deltaX / distance;
-    float dirY = deltaY / distance;
-
-    // Mueve al enemigo hacia el personaje
-    PosX += dirX * vEnemy;
-    PosY += dirY * vEnemy;
+int Enemigo::GetPosY(int index) const {
+    if (index >= 0 && index < enemigos.size())
+        return enemigos[index].PosY;
+    else
+        return -1; // Manejo de error
 }

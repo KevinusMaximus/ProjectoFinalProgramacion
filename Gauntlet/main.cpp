@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 			sDirector->getCurrentScene()->init();
 		}
 		teclas->update();
-		if (teclas->isKeyDown(ENTER)) {
+		if (teclas->isKeyDown(ESCAPE)) {
 			gameOn = false;
 		}
 		// Updates scene
@@ -40,6 +40,7 @@ int main(int argc, char* argv[]) {
 		
 		sDirector->getCurrentScene()->render();
 		video::getInstance()->updateScreen();
+		sonido->close();
 		
 
 	}
