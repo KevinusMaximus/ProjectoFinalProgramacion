@@ -1,0 +1,28 @@
+﻿  CargarMapas.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\video.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'sdl.h': No such file or directory
+  Character.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\Character.h(4,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  Enemigo.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\resourceManager.h(8,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  KeyManager.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\keyManager.h(23,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  main.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\main.cpp(1,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL_image.h': No such file or directory
+  resourceManager.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\resourceManager.h(8,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  SceneDirector.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\video.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'sdl.h': No such file or directory
+  SceneHighScore.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\video.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'sdl.h': No such file or directory
+  ScenePantallaIni.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\video.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'sdl.h': No such file or directory
+  ScenePantallaJue.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\video.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'sdl.h': No such file or directory
+  ScenePause.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\video.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'sdl.h': No such file or directory
+  soundManager.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\soundManager.h(5,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL_mixer.h': No such file or directory
+  Tileset.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\Tileset.h(4,10): fatal error C1083: No se puede abrir el archivo incluir: 'SDL.h': No such file or directory
+  video.cpp
+C:\Users\Alex\Desktop\ProyectoFinalGauntlet\Gauntlet\video.h(2,10): fatal error C1083: No se puede abrir el archivo incluir: 'sdl.h': No such file or directory

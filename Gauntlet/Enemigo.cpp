@@ -13,8 +13,8 @@ void Enemigo::init(int numEnemies)
 
     for (int i = 0; i < numEnemies; ++i) {
         EnemyInstance newEnemy;
-        newEnemy.PosX = rand() % 500;
-        newEnemy.PosY = rand() % 500;
+        newEnemy.PosX = rand() % 1000;
+        newEnemy.PosY = rand() % 1000;
         newEnemy.active = true;
         newEnemy.enemigo = ResourceManager::getInstance()->loadAndGetGraphicID("../images/Enemigo1.png");
 

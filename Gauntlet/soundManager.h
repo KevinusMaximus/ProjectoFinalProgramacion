@@ -2,7 +2,7 @@
 #ifndef SOUNDMANAGER_H
 #define SOUNDMANAGER_H
 
-#include<SDL_mixer.h>
+#include <SDL_mixer.h>
 #include <string>
 #include <unordered_map>
 

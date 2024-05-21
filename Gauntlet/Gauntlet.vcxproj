@@ -28,6 +28,7 @@
     <ClCompile Include="resourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneDirector.cpp" />
+    <ClCompile Include="SceneHighScore.cpp" />
     <ClCompile Include="ScenePantallaIni.cpp" />
     <ClCompile Include="ScenePantallaJue.cpp" />
     <ClCompile Include="ScenePause.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="resourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneDirector.h" />
+    <ClInclude Include="SceneHighScore.h" />
     <ClInclude Include="ScenePantallaIni.h" />
     <ClInclude Include="ScenePantallaJue.h" />
     <ClInclude Include="ScenePause.h" />
